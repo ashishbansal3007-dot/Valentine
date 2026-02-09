@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Divyani 💖 Valentine Proposal</title>
-
   <style>
     body {
       margin: 0;
@@ -16,87 +15,78 @@
       height: 100vh;
       text-align: center;
     }
-
     .container {
       max-width: 90%;
     }
-
     img {
       width: 180px;
       margin-bottom: 20px;
     }
-
     h1 {
       color: #b3003b;
       margin-bottom: 10px;
     }
-
     p {
       color: #5c0020;
       font-size: 18px;
       margin-bottom: 30px;
     }
-
     .buttons {
       position: relative;
       height: 140px;
     }
-
     button {
-      padding: 14px 28px;
       font-size: 20px;
+      padding: 14px 28px;
       border: none;
       border-radius: 12px;
       cursor: pointer;
       transition: all 0.3s ease;
     }
-
     #yesBtn {
       background-color: #ff3366;
       color: white;
       box-shadow: 0 6px 15px rgba(0,0,0,0.2);
       z-index: 2;
+      position: absolute;
+      left: 0;
+      top: 0;
     }
-
     #noBtn {
       background-color: #fff;
       color: #333;
       margin-left: 20px;
       z-index: 1;
+      position: absolute;
+      left: 200px;
+      top: 0;
     }
-
     .celebrate {
       display: none;
     }
-
     .celebrate h1 {
       font-size: 46px;
       color: #ff1a66;
     }
-
     .celebrate p {
       font-size: 22px;
     }
   </style>
 </head>
 <body>
-
   <!-- MAIN SCREEN -->
   <div class="container" id="main">
     <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="cute love gif">
-
     <h1>Divyani 💖</h1>
     <p>
       I’ve been meaning to ask you something important…<br>
       <b>Will you be my Valentine?</b> 🌹
     </p>
-
     <div class="buttons">
       <button id="yesBtn" onclick="sayYes()">Yes 😍</button>
       <button id="noBtn" onclick="sayNo()">No 🙄</button>
     </div>
   </div>
-
   <!-- CELEBRATION SCREEN -->
   <div class="container celebrate" id="celebrate">
     <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="celebrate gif">
@@ -107,10 +97,8 @@
       Dinner + dessert + endless laughs on me 🍷🍰
     </p>
   </div>
-
   <script>
     let noClicks = 0;
-
     const noTexts = [
       "No 🙄",
       "Are you sure?",
@@ -121,32 +109,26 @@
       "Okay stop playing 😐",
       "Just press Yes ❤️"
     ];
-
     function sayNo() {
       noClicks++;
-
       const yesBtn = document.getElementById("yesBtn");
       const noBtn = document.getElementById("noBtn");
-
-      // Grow Yes button dramatically
-      let size = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-      yesBtn.style.fontSize = (size + 8) + "px";
-      yesBtn.style.padding = "22px 38px";
-
+      if (noClicks === 1) {
+        yesBtn.style.fontSize = "100px";
+        yesBtn.style.padding = "60px 100px";
+        yesBtn.style.left = "170px";
+        yesBtn.style.top = "-60px";
+        yesBtn.style.width = "360px";
+        yesBtn.style.height = "150px";
+        noBtn.style.zIndex = 0;
+      }
       // Update No text
       noBtn.innerText = noTexts[Math.min(noClicks, noTexts.length - 1)];
-
-      // Eventually surrender
-      if (noClicks >= 7) {
-        noBtn.style.display = "none";
-      }
     }
-
     function sayYes() {
       document.getElementById("main").style.display = "none";
       document.getElementById("celebrate").style.display = "block";
     }
   </script>
-
 </body>
 </html>
